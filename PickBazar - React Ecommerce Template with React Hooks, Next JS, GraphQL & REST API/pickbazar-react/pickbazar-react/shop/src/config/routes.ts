@@ -18,7 +18,7 @@ export const Routes = {
     // if (asPath) {
     //   return `/products/${encodeURIComponent(slug)}?type=${asPath}`;  
     // }
-    return `/products/${encodeURIComponent(slug)}`;
+    return `/products/${encodeURIComponent(slug.toString())}`;
   },
   privacy: '/privacy',
   terms: '/terms',

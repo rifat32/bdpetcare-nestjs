@@ -33,7 +33,7 @@ const ProductPage: NextPageWithLayout<
     <>
       <Seo
         title={product.name}
-        url={product.slug}
+        url={product.slug.toString()}
         images={!isEmpty(product?.image) ? [product.image] : []}
       />
       <AttributesProvider>
@@ -54,12 +54,12 @@ const ProductPage: NextPageWithLayout<
 
           <ProductReviews
             productId={product?.id}
-            productType={product?.type?.slug}
+            productType={product?.type?.slug.toString()}
           />
           <ProductQuestions
             productId={product?.id}
             shopId={product?.shop?.id}
-            productType={product?.type?.slug}
+            productType={product?.type?.slug.toString()}
           />
           {product.type?.slug !== 'books' &&
             product?.related_products?.length > 1 && (
