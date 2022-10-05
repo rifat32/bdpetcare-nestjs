@@ -69,7 +69,7 @@ export class ProductsService {
           });
         }
       }
-console.log(searchText[1]?.name,'ddd')
+// console.log(searchText[1]?.name,'ddd')
       data = fuse
         .search({
           $and: searchText,
@@ -114,10 +114,11 @@ console.log(searchText[1]?.name,'ddd')
      ;`
      queryResult = await  this.connection.query(rawQuery);
 
-console.log(rawQuery)
-console.log(searchText)
+// console.log(rawQuery)
+// console.log(searchText)
 
     } else {
+
       queryResult = await  this.connection.query(`
       SELECT 
       products.id as product_id,
@@ -136,6 +137,9 @@ console.log(searchText)
       on 
       variations.id = VLD.variation_id
       ;`);
+
+
+
     }
 
     // const results = data.slice(startIndex, endIndex);
@@ -149,7 +153,8 @@ console.log(searchText)
       el.image,
       el.sell_price_inc_tax,
       el.product_description,
-      el.qty_available
+      el.qty_available,
+      []
     )
     )
     })
@@ -196,6 +201,16 @@ console.log(searchText)
       AND  
       products.id = ${slug}
     ;`);
+    let imageQueryResult = await  this.connection.query(`
+    SELECT 
+    id,
+    file	
+    FROM
+    product_images
+    where (
+      product_images.product_id = ${queryResult[0].product_id}
+      )
+    ;`);
 
    const product2 =  getSingleProduct(
     queryResult[0].variation_id,
@@ -203,7 +218,8 @@ console.log(searchText)
     queryResult[0].image,
     queryResult[0].sell_price_inc_tax,
     queryResult[0].product_description,
-    queryResult[0].qty_available
+    queryResult[0].qty_available,
+    imageQueryResult
     )
     const product = this.products.find((p) => p.slug === "baby-spinach");
     const related_products = this.products

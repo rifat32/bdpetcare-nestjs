@@ -11,6 +11,9 @@ export const databaseProviders = [
         username: 'root',
         password: '',
         database: 'bdpetcare_pos',
+        // username: 'dotzdemo_posmain',
+        // password: 'dotzdemo_posmain',
+        // database: 'dotzdemo_pos_test',
         entities: [
             __dirname + '/../**/*.entity{.ts,.js}',
         ],

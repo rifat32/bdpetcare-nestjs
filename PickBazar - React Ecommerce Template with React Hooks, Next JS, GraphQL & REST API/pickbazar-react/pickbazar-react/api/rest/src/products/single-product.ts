@@ -1,16 +1,38 @@
+const getGallery = (gallery) => {
+const tempGallery = gallery.map(el => {
+  const galleryObj = {
+      "id": el.id,
+      "original": `https://bdpetcare.com/pos/storage/img/${el.file}`,
+      "thumbnail": `https://bdpetcare.com/pos/storage/img/${el.file}`
+    
+  }
+  return galleryObj
+})
+
+
+  return tempGallery;
+}
+
+
 export const getSingleProduct = (
     variation_id,
     product_name,
     image,
     sell_price_inc_tax,
     description,
-    qty_available
+    qty_available,
+    gallery:any = []
   
 ) => {
+
+
+
+
+
     return {
         "id": variation_id,
         "name": product_name,
-        "slug": variation_id,
+        "slug": variation_id.toString(),
         "description": description,
         "type_id": 1,
         "price": parseFloat(sell_price_inc_tax),
@@ -37,26 +59,27 @@ export const getSingleProduct = (
         },
         "video": null,
         "gallery": [
-          {
-            "id": "576",
-            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/575/baby-spinach-1.png",
-            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/575/conversions/baby-spinach-1-thumbnail.jpg"
-          },
-          {
-            "id": "577",
-            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/576/baby-spinach-2.png",
-            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/576/conversions/baby-spinach-2-thumbnail.jpg"
-          },
-          {
-            "id": "578",
-            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/577/baby-spinach.png",
-            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/577/conversions/baby-spinach-thumbnail.jpg"
-          },
-          {
-            "id": "738",
-            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/737/BabySpinach_xronqz.jpg",
-            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/737/conversions/BabySpinach_xronqz-thumbnail.jpg"
-          }
+          ...getGallery(gallery)
+          // {
+          //   "id": "576",
+          //   "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/575/baby-spinach-1.png",
+          //   "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/575/conversions/baby-spinach-1-thumbnail.jpg"
+          // },
+          // {
+          //   "id": "577",
+          //   "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/576/baby-spinach-2.png",
+          //   "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/576/conversions/baby-spinach-2-thumbnail.jpg"
+          // },
+          // {
+          //   "id": "578",
+          //   "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/577/baby-spinach.png",
+          //   "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/577/conversions/baby-spinach-thumbnail.jpg"
+          // },
+          // {
+          //   "id": "738",
+          //   "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/737/BabySpinach_xronqz.jpg",
+          //   "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/737/conversions/BabySpinach_xronqz-thumbnail.jpg"
+          // }
         ],
         "deleted_at": null,
         "created_at": "2021-03-08T10:26:13.000000Z",
